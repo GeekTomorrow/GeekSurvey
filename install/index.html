@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>极客调查 - 数据库安装</title>
+    <!-- 引入Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义CSS -->
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center mb-5">
+            <h1>极客调查 - 数据库安装</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 form-container">
+            <form id="install-form" class="needs-validation" method="post" novalidate>
+                <div class="mb-3">
+                    <label for="servername" class="form-label">Server Name:</label>
+                    <input type="text" class="form-control" id="servername" name="servername" value="localhost" required>
+                    <div class="invalid-feedback">请输入服务器名。</div>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                    <div class="invalid-feedback">请输入用户名。</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <div class="invalid-feedback">请输入密码。</div>
+                </div>
+                <div class="mb-3">
+                    <label for="dbname" class="form-label">Database Name:</label>
+                    <input type="text" class="form-control" id="dbname" name="dbname" required>
+                    <div class="invalid-feedback">请输入数据库名。</div>
+                </div>
+                <button class="btn btn-primary" type="submit">Install</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 引入Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- 自定义JS，用于表单验证 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#install-form').on('submit', function(e) {
+            e.preventDefault(); // 阻止默认提交行为
+            var formData = $(this).serialize(); // 序列化表单数据
+            $.ajax({
+                type: 'POST',
+                url: 'install.php',
+                data: formData,
+                success: function(response) {
+                    alert(response); // 显示服务器响应
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
